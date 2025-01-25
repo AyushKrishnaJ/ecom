@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
+// import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import './Login.css'
-const Login = () => {
+const Login = ({setIsauth}) => {
+  
+  // const navigate = useNavigate();
+  const [email,setEmail]=useState("")
+  const [password,setPassword]=useState("")
+  const [error,setError]=useState(null)
+  const [loading,setLoading]=useState(false)
   const Handlelogin= async (e)=>{
     e.preventDefault();
     setLoading(true);
@@ -10,24 +17,25 @@ const Login = () => {
     
       
       try{
-        const response = await axios.post("http://localhost:5173/api/auth/login",{email,password});
+        const response = await axios.post("http://localhost:8000/api/auth/login",{email,password});
         console.log("Login successful:", response.data);
-        alert("Login successful!");
+        setIsauth(true);
+
+        // alert("Login successful!");
+        // navigate('/');
         setEmail("");
         setPassword("");
+        
     
     
       }
       catch(err){
         console.error("error during login",err)
-        setTimeout(() => {
-          setError("Invalid Credentials");
-        }, 1000);
+        setError("Invalid Credentials!!!");
+        
         
       }finally{
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000);
+        setLoading(false);
         
       }
 
@@ -35,10 +43,7 @@ const Login = () => {
     
 
   };
-    const [email,setEmail]=useState("")
-    const [password,setPassword]=useState("")
-    const [error,setError]=useState(null)
-    const [loading,setLoading]=useState(false)
+    
   return (
     <div className='login'>
       <form onSubmit={(e)=>{Handlelogin(e)}} >

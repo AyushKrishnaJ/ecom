@@ -1,19 +1,23 @@
-import React from 'react'
-import {Routes, Route } from 'react-router-dom'
+import React, { useState } from 'react'
 import Login from './Pages/Login'
-import ProductComponent from './Pages/ProductListPage'
-import CartComponent from './Pages/CartComponent';
-import Product from './Pages/ProductDetails';
+import { Navigate, Route, Routes } from 'react-router-dom'
+import Home from './Pages/Home'
+import Navbar from './components/Navbar'
+
 const App = () => {
+  const [isauth,setIsauth]=useState(false)
+  
   return (
     
+    <div>
+      
+      {isauth && <Navbar/>}
       <Routes>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/products' element={<ProductComponent/>}/>
-      <Route path="product/:id" element={<Product />} />
-      <Route path='/cart' element={<CartComponent/>}/>
+        <Route path='/' element={isauth ? <Navigate to="/home" />:<Login isauth={setIsauth}/>}/>
+        
+        <Route path='/home' element={<Home/>}/>
       </Routes>
-    
+    </div>
   )
 }
 
