@@ -26,11 +26,13 @@ header{
 .searchbar input{
     border: 2px solid rgba(198, 196, 196, 0.319);
     width: 100%;
-    
+    background:transparent;
+    color:white;
     padding: 6px;
     padding-left: 15px;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
+    outline:none;
 }
 .header nav{
     gap: 17px;
@@ -49,6 +51,8 @@ header{
     border-left: none;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
+    background:transparent;
+    color:white;
 }
 nav .user,.cart{
     cursor: pointer;
