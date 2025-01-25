@@ -9,6 +9,7 @@ const Login = ({setIsauth}) => {
   const [password,setPassword]=useState("")
   const [error,setError]=useState(null)
   const [loading,setLoading]=useState(false)
+  
   const Handlelogin= async (e)=>{
     e.preventDefault();
     setLoading(true);
@@ -17,7 +18,7 @@ const Login = ({setIsauth}) => {
     
       
       try{
-        const response = await axios.post("http://localhost:8000/api/auth/login",{email,password});
+        const response = await axios.post("http://localhost:8080/api/auth/login",{email,password});
         console.log("Login successful:", response.data);
         setIsauth(true);
 
