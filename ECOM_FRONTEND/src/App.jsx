@@ -10,12 +10,13 @@ const App = () => {
   return (
     
     <div>
-      
-      {isauth && <Navbar/>}
+      <Navbar/>
+      <Home/>
+      {/* {isauth && <Navbar/>} */}
       <Routes>
-        <Route path='/' element={isauth ? <Navigate to="/home" />:<Login isauth={setIsauth}/>}/>
+        {/* <Route path='/' element={isauth ? <Navigate to="/home" />:<Login isauth={setIsauth}/>}/>
         
-        <Route path='/home' element={<Home/>}/>
+        <Route path='/home' element={<Home/>}/> */}
       </Routes>
     </div>
   )
