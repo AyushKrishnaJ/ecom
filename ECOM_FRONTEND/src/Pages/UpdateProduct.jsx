@@ -192,7 +192,7 @@ const UpdateProduct = () => {
               id="stockQuantity"
             />
           </div>
-          <div className="col-md-8">
+          <div className="col-md-8" >
             <label className="form-label">
               <h6>Image</h6>
             </label>
@@ -200,8 +200,9 @@ const UpdateProduct = () => {
               src={image ? URL.createObjectURL(image) : "Image unavailable"}
               alt={product.imageName}
               style={{
-                width: "100%",
-                height: "180px",
+                width: "80%",
+                
+                height: "auto",
                 objectFit: "cover",
                 padding: "5px",
                 margin: "0",
