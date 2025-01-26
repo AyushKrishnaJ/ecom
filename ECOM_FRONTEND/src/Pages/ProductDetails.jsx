@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../Context/Context";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 
 const Product = () => {
   const { id } = useParams();
@@ -53,9 +54,17 @@ const Product = () => {
     navigate(`/product/update/${id}`);
   };
 
-  const handlAddToCart = () => {
-    addToCart(product);
-    alert("Product added to cart");
+  const handleAddToCart = async () => {
+    try {
+      // Assuming the product ID and cart ID are available and correct
+      const cartId = 1;  // Update with dynamic cartId based on user/session
+      await axios.post(`http://localhost:8080/api/cart/add/${cartId}/${product.id}`);
+      addToCart(product); // If you need to update the context as well
+      alert("Product added to cart");
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+      alert("Failed to add product to cart");
+    }
   };
 
   if (!product) {
@@ -68,6 +77,7 @@ const Product = () => {
 
   return (
     <>
+      <Navbar />
       <div className="containers" style={{ display: "flex" }}>
         <img
           className="left-column-img"
@@ -116,7 +126,7 @@ const Product = () => {
             </span>
             <button
               className={`cart-btn ${!product.productAvailable ? "disabled-btn" : ""}`}
-              onClick={handlAddToCart}
+              onClick={handleAddToCart}
               disabled={!product.productAvailable}
               style={{
                 padding: "1rem 2rem",

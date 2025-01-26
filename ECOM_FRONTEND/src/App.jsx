@@ -20,7 +20,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={isauth ? <Navigate to="/home" />:<Login setIsauth={setIsauth}/>}/>
           <Route path='/products' element={<ProductComponent/>}/>
-          <Route path='/product/1' element ={<Product/>}/>
+          <Route path='/product/:id' element ={<Product/>}/>
           <Route path='/home' element={<Home/>}/>
           <Route path='/cart' element={<CartComponent/>}/>
       </Routes>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import Navbar from '../components/Navbar';
 const ProductComponent = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -51,7 +51,8 @@ const ProductComponent = () => {
   }
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', margin: '2rem' }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem',  }}>
+        <Navbar/>
       {products.map((product) => (
         <div
           key={product.id}
@@ -60,6 +61,7 @@ const ProductComponent = () => {
             border: '1px solid #ddd',
             borderRadius: '10px',
             padding: '1rem',
+            marginLeft:'1rem',
             width: '200px',
             backgroundColor: '#f8f8f8', // Light background
             cursor: 'pointer',
@@ -108,7 +110,7 @@ const ProductComponent = () => {
               marginBottom: '1rem',
             }}
           >
-            {product.price}
+            ${product.price}
           </span>
         </div>
       ))}
